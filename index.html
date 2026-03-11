@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Singo Sansar — Empowering Women in Sarlahi</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #C8922A;
+      --gold-lt:    #E8B84B;
+      --green:      #2E6E4E;
+      --green-dk:   #1B4A33;
+      --cream:      #FAF6EE;
+      --dark:       #1C1C1C;
+      --mid:        #5A5A5A;
+      --light:      #F0EBE0;
+      --terracotta: #C4583A;
+      --terra-lt:   #F2EDE9;
+      --teal:       #2E8B80;
+      --teal-lt:    #E8F4F2;
+      --lime:       #7CA020;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Georgia', serif;
+      color: var(--dark);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--terracotta);
+    }
+
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--green-dk);
+      letter-spacing: 0.04em;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo-img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      height: 48px;
+      width: auto;
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .nav-logo-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-logo span { color: var(--terracotta); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link {
+      padding: 0.5rem 0.9rem;
+      color: var(--green-dk);
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-radius: 2rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-link:hover {
+      background: var(--teal-lt);
+      color: var(--teal);
+    }
+
+    .nav-contact {
+      display: inline-block;
+      padding: 0.55rem 1.4rem;
+      background: var(--terracotta);
+      color: #fff;
+      border: none;
+      border-radius: 2rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      margin-left: 0.5rem;
+    }
+
+    .nav-contact:hover {
+      background: #A8432A;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 640px) {
+      .nav-link { display: none; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 2rem 4rem;
+      background:
+        linear-gradient(to bottom, rgba(27,74,51,0.72) 0%, rgba(27,74,51,0.45) 60%, rgba(250,246,238,0.0) 100%),
+        url('photos/Residential Women.jpg') center/cover no-repeat;
+      background-color: var(--green-dk);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #FFAA88;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      color: #fff;
+      line-height: 1.2;
+      max-width: 720px;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold-lt);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      color: rgba(255,255,255,0.88);
+      max-width: 560px;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      background: var(--gold);
+      color: #fff;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .hero-btn:hover { background: var(--gold-lt); transform: translateY(-2px); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      opacity: 0.7;
+    }
+
+    .scroll-hint svg { fill: #fff; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 2rem; }
+
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+      color: var(--green-dk);
+      margin-bottom: 1.2rem;
+      max-width: 600px;
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      color: var(--mid);
+      max-width: 620px;
+      line-height: 1.8;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--terra-lt);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-text {
+      flex: 1 1 340px;
+      max-width: 540px;
+      border-left: 4px solid var(--terracotta);
+      padding-left: 1.5rem;
+    }
+
+    .about-image {
+      flex: 1 1 320px;
+      max-width: 480px;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-image .img-placeholder {
+      width: 100%;
+      height: 360px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dk) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+
+    .about-image .img-placeholder svg { opacity: 0.5; }
+
+    /* ── PROGRAMS ── */
+    .programs { background: var(--teal-lt); text-align: center; }
+
+    .programs .section-title,
+    .programs .section-label { margin-left: auto; margin-right: auto; }
+
+    .program-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+
+    .program-card {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 2rem 1.8rem;
+      flex: 1 1 220px;
+      max-width: 280px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-top: 4px solid transparent;
+    }
+
+    .program-card:nth-child(1) { border-top-color: var(--terracotta); }
+    .program-card:nth-child(2) { border-top-color: var(--gold); }
+    .program-card:nth-child(3) { border-top-color: var(--teal); }
+    .program-card:nth-child(4) { border-top-color: var(--lime); }
+
+    .program-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .program-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+
+    .program-card:nth-child(1) .program-icon { background: linear-gradient(135deg, var(--terracotta), #E07055); }
+    .program-card:nth-child(2) .program-icon { background: linear-gradient(135deg, var(--gold), var(--gold-lt)); }
+    .program-card:nth-child(3) .program-icon { background: linear-gradient(135deg, var(--teal), #3AADA0); }
+    .program-card:nth-child(4) .program-icon { background: linear-gradient(135deg, var(--lime), #9AC030); }
+
+    .program-icon svg { fill: #fff; }
+
+    .program-card h3 {
+      color: var(--green-dk);
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .program-card p {
+      color: var(--mid);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    /* ── GALLERY ── */
+    .gallery { background: var(--green-dk); }
+
+    .gallery .section-label { color: #FFAA88; }
+
+    .gallery .section-title { color: #fff; }
+
+    .gallery .section-body { color: rgba(255,255,255,0.75); }
+
+    .gallery-track-wrapper {
+      position: relative;
+      margin-top: 2.5rem;
+    }
+
+    .gallery-grid {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem;
+      cursor: grab;
+    }
+
+    .gallery-grid:active { cursor: grabbing; }
+
+    .gallery-grid::-webkit-scrollbar { height: 6px; }
+    .gallery-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 3px; }
+    .gallery-grid::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    .gallery-item {
+      flex: 0 0 320px;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+      scroll-snap-align: start;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.45);
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 10;
+    }
+
+    .gallery-arrow:hover { background: var(--terracotta); }
+    .gallery-arrow svg { fill: #fff; }
+    .gallery-arrow.prev { left: -22px; }
+    .gallery-arrow.next { right: -22px; }
+
+    @media (max-width: 640px) {
+      .gallery-item { flex: 0 0 80vw; }
+      .gallery-arrow { display: none; }
+    }
+
+    .gallery-item .ph {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .ph-1 { background: #2a5a3e; }
+    .ph-2 { background: #1e4530; }
+    .ph-3 { background: #335f45; }
+    .ph-4 { background: #244d38; }
+    .ph-5 { background: #3a6a52; }
+    .ph-6 { background: #1a3d28; }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--terra-lt);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-leaf {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 80%;
+      width: auto;
+      pointer-events: none;
+      opacity: 0.18;
+    }
+
+    .contact .section-title,
+    .contact .section-label { margin-left: auto; margin-right: auto; }
+
+    .contact .section-body { margin: 0 auto 2.5rem; }
+
+    .contact-mailto {
+      display: inline-block;
+      padding: 1rem 2.8rem;
+      background: var(--terracotta);
+      color: #fff;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 1.1rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .contact-mailto:hover {
+      background: #A8432A;
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-dk);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.88rem;
+      border-top: 4px solid var(--terracotta);
+    }
+
+    footer strong { color: rgba(255,255,255,0.9); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0.85rem 1.2rem; }
+      section { padding: 3.5rem 1.2rem; }
+      .hero { padding: 6rem 1.2rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <div class="nav-logo">
+    <img src="assets/PhysalisTransparent.png" alt="" class="nav-logo-img" aria-hidden="true" />
+    <span class="nav-logo-text">Singo <span>Sansar</span></span>
+  </div>
+  <div class="nav-links">
+    <a href="#about" class="nav-link">Who We Are</a>
+    <a href="#programs" class="nav-link">What We Do</a>
+    <a href="#contact" class="nav-contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <p class="hero-eyebrow">Sarlahi, Nepal</p>
+  <h1>Building Futures for <em>Women</em> in Sarlahi</h1>
+  <p>Through skills training, financial education, and community support, Singo Sansar empowers women to shape their own lives.</p>
+  <a href="#about" class="hero-btn">Learn More</a>
+  <div class="scroll-hint">
+    <svg width="28" height="28" viewBox="0 0 24 24"><path d="M12 16l-6-6h12z"/></svg>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about" id="about">
+  <div class="about-text">
+    <p class="section-label" style="color:var(--terracotta)">Who We Are</p>
+    <h2 class="section-title">Rooted in Sarlahi. Growing Together.</h2>
+    <p class="section-body">
+      Singo Sansar — meaning <em>"the whole world"</em> in Nepali — was founded with a single belief: that every woman deserves the tools to build a secure and dignified life.
+      <br><br>
+      Operating in the Sarlahi district of Nepal's Madhesh Province, we work alongside local communities to deliver practical training, mentorship, and financial literacy to women who have been historically underserved.
+    </p>
+  </div>
+  <div class="about-image">
+    <img src="photos/Women in Community.jpg" alt="Women in community">
+  </div>
+</section>
+
+<!-- ── PROGRAMS ── -->
+<section class="programs" id="programs">
+  <p class="section-label" style="color:var(--teal)">What We Do</p>
+  <h2 class="section-title">Programs That Create Real Change</h2>
+
+  <div class="program-grid">
+    <div class="program-card" style="background: linear-gradient(rgba(255,255,255,0.87), rgba(255,255,255,0.87)), url('photos/Women Tying Bundles of Dry Grass.jpg') center/cover no-repeat;">
+      <div class="program-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.06 15.94 0 13.36 0c-1.3 0-2.43.53-3.27 1.37L9 2.5 7.91 1.37C7.07.53 5.94 0 4.64 0 2.06 0 0 2.06 0 4.64c0 .48.11.92.18 1.36H0c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-9 13H4V8h7v11zm7 0h-5V8h5v11z" transform="translate(2,2) scale(.85)"/></svg>
+      </div>
+      <h3>Vocational Skills Training</h3>
+      <p>Hands-on workshops in tailoring, handicrafts, food processing, and small-business operations.</p>
+    </div>
+
+    <div class="program-card" style="background: linear-gradient(rgba(255,255,255,0.87), rgba(255,255,255,0.87)), url('photos/Woman in Green Sweater Smiling.jpg') center/cover no-repeat;">
+      <div class="program-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+      </div>
+      <h3>Financial Literacy</h3>
+      <p>Practical money management, savings habits, budgeting, and access to microfinance resources.</p>
+    </div>
+
+    <div class="program-card" style="background: linear-gradient(rgba(255,255,255,0.87), rgba(255,255,255,0.87)), url('photos/Women in Community.jpg') center/cover no-repeat;">
+      <div class="program-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      </div>
+      <h3>Community Mentorship</h3>
+      <p>Peer circles and mentor networks connecting women across Sarlahi for shared support and growth.</p>
+    </div>
+
+    <div class="program-card" style="background: linear-gradient(rgba(255,255,255,0.87), rgba(255,255,255,0.87)), url('photos/Women and Family.jpg') center/cover no-repeat;">
+      <div class="program-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18V15c0 3 3.58 5 7 5s7-2 7-5v-3.82L20 9l-8-6zm5 12c0 1.66-2.24 3-5 3s-5-1.34-5-3v-2.27l5 2.73 5-2.73V15z"/></svg>
+      </div>
+      <h3>Education Support</h3>
+      <p>Literacy programs and scholarships that keep girls and women in school and open new career pathways.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section class="gallery" id="gallery">
+  <p class="section-label">Our Community</p>
+  <h2 class="section-title">Life in Sarlahi</h2>
+  <p class="section-body">
+    The people and landscapes of Sarlahi are our inspiration. Add your own photos to the <code style="font-size:0.85em;color:var(--gold-lt)">photos/</code> folder to bring this gallery to life.
+  </p>
+
+  <div class="gallery-track-wrapper">
+    <button class="gallery-arrow prev" aria-label="Scroll left" onclick="scrollGallery(-1)">
+      <svg width="20" height="20" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+
+    <div class="gallery-grid" id="galleryTrack">
+      <!-- Swap each placeholder div for: <img src="photos/gallery-1.jpg" alt="..."> inside the gallery-item div -->
+      <div class="gallery-item"><img src="photos/Daily Life in Bhaktapur.jpg" alt="Daily life in Bhaktapur"></div>
+      <div class="gallery-item"><img src="photos/Woman in Green Sweater Smiling.jpg" alt="Woman in green sweater smiling"></div>
+      <div class="gallery-item"><img src="photos/Women Tying Bundles of Dry Grass.jpg" alt="Women tying bundles of dry grass"></div>
+      <div class="gallery-item"><img src="photos/CarryingBasket.jpg" alt="Woman carrying basket"></div>
+      <div class="gallery-item"><img src="photos/Women Sitting on Step.jpg" alt="Women sitting on step"></div>
+      <div class="gallery-item"><img src="photos/Women and Family.jpg" alt="Women and family"></div>
+    </div>
+
+    <button class="gallery-arrow next" aria-label="Scroll right" onclick="scrollGallery(1)">
+      <svg width="20" height="20" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact">
+  <p class="section-label" style="color:var(--terracotta)">Get In Touch</p>
+  <h2 class="section-title">Connect With Singo Sansar</h2>
+  <p class="section-body">Whether you want to volunteer, donate, partner with us, or simply learn more — we'd love to hear from you.</p>
+
+  <a href="mailto:info@singosansar.org?subject=Getting%20in%20Touch" class="contact-mailto">
+    Send Us an Email
+  </a>
+
+  <img src="assets/LeafTransparent.jpg" alt="" class="contact-leaf" aria-hidden="true" />
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p><strong>Singo Sansar</strong> &mdash; Sarlahi, Nepal</p>
+  <p style="margin-top:0.4rem">Empowering women. Strengthening communities. Building futures.</p>
+</footer>
+
+<script>
+  // Gallery arrow scroll
+  function scrollGallery(dir) {
+    const track = document.getElementById('galleryTrack');
+    track.scrollBy({ left: dir * 340, behavior: 'smooth' });
+  }
+
+  // Gallery click-drag scroll
+  (function () {
+    const track = document.getElementById('galleryTrack');
+    let isDown = false, startX, scrollLeft;
+    track.addEventListener('mousedown', e => {
+      isDown = true;
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    track.addEventListener('mouseleave', () => isDown = false);
+    track.addEventListener('mouseup', () => isDown = false);
+    track.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      track.scrollLeft = scrollLeft - (x - startX);
+    });
+  })();
+
+</script>
+
+</body>
+</html>
